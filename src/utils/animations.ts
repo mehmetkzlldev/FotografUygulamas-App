@@ -396,7 +396,7 @@ export function createRipple(element: HTMLElement, event: MouseEvent): void {
  * @param element - Element
  * @param speed - Hız faktörü (0-1)
  */
-export function addParallax(element: HTMLElement, speed: number = 0.5): void {
+export function addParallax(element: HTMLElement, speed: number = 0.5): () => void {
   const handleScroll = () => {
     const scrolled = window.pageYOffset;
     const rect = element.getBoundingClientRect();
@@ -409,10 +409,12 @@ export function addParallax(element: HTMLElement, speed: number = 0.5): void {
     }
   };
 
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', handleScroll, { passive: true });
   
-  // Cleanup için return
-  return () => window.removeEventListener('scroll', handleScroll);
+  // Cleanup fonksiyonu döndür
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
 }
 
 /**

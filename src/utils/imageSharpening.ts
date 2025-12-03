@@ -160,7 +160,7 @@ export function smartSharpen(imageSrc: string): Promise<string> {
         const sharpened = applySoftUnsharpMask(data, width, height);
 
         // İşlenmiş data'yı canvas'a uygula
-        const finalImageData = new ImageData(sharpened, width, height);
+        const finalImageData = new ImageData(new Uint8ClampedArray(sharpened), width, height);
         ctx.putImageData(finalImageData, 0, 0);
 
         // JPEG olarak kaydet

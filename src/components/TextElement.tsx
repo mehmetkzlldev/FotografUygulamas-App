@@ -140,6 +140,7 @@ export const TextElement: React.FC<TextElementProps> = ({
       style={getTextStyle()}
       onMouseDown={handleMouseDown}
       onClick={(e) => {
+        e.stopPropagation();
         if (e.detail === 1) {
           setTimeout(() => {
             if (!isDragging) {
@@ -150,9 +151,6 @@ export const TextElement: React.FC<TextElementProps> = ({
       }}
       contentEditable={isSelected}
       suppressContentEditableWarning
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
       onBlur={(e) => {
         const newText = e.currentTarget.textContent || '';
         if (newText !== textElement.text) {

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface AdjustSettings {
+export interface AdjustSettings {
   brightness: number; // -100 to 100
   contrast: number; // -100 to 100
   saturation: number; // -100 to 100

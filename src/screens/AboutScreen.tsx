@@ -31,7 +31,7 @@ const AboutScreen: React.FC = () => {
   }, []);
 
   const team = [
-    { name: 'Mehmet Ali Kızıloğlu', role: 'Kurucu', avatar: '👨‍💼' },
+    { name: 'Mehmet', role: 'Kurucu', avatar: '👨‍💼' },
   ];
 
   const values = [

@@ -5,10 +5,7 @@ import './AboutScreen.css';
 
 const AboutScreen: React.FC = () => {
   const team = [
-    { name: 'Ahmet Yılmaz', role: 'Kurucu & CEO', avatar: '👨‍💼' },
-    { name: 'Ayşe Demir', role: 'CTO', avatar: '👩‍💻' },
-    { name: 'Mehmet Kaya', role: 'Tasarım Direktörü', avatar: '👨‍🎨' },
-    { name: 'Zeynep Arslan', role: 'AI Mühendisi', avatar: '👩‍🔬' },
+    { name: 'Mehmet Ali Kızıloğlu', role: 'Kurucu', avatar: '👨‍💼' },
   ];
 
   const values = [

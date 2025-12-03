@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "setup-env": "node setup-env.js",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && npm run create-404",
+    "create-404": "node -e \"const fs=require('fs'); const html=fs.readFileSync('dist/index.html','utf8'); fs.writeFileSync('dist/404.html', html); console.log('404.html created');\"",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

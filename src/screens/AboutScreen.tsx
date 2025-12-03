@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { getStatistics } from '../utils/mongodb';
 import './AboutScreen.css';
 
 const AboutScreen: React.FC = () => {
+  const [stats, setStats] = useState({
+    photosEdited: 0,
+    activeUsers: 0,
+    countries: 50 // Ülke sayısı sabit kalabilir veya farklı bir kaynaktan gelebilir
+  });
+
+  useEffect(() => {
+    // İstatistikleri yükle
+    const loadStats = async () => {
+      try {
+        const statistics = await getStatistics();
+        if (statistics) {
+          setStats({
+            photosEdited: statistics.photosEdited || 0,
+            activeUsers: statistics.activeUsers || 0,
+            countries: 50 // Ülke sayısı
+          });
+        }
+      } catch (error) {
+        console.error('İstatistik yükleme hatası:', error);
+      }
+    };
+    loadStats();
+  }, []);
+
   const team = [
     { name: 'Mehmet Ali Kızıloğlu', role: 'Kurucu', avatar: '👨‍💼' },
   ];
@@ -61,15 +87,29 @@ const AboutScreen: React.FC = () => {
             </div>
             <div className="story-stats">
               <div className="stat-item">
-                <div className="stat-value">10K+</div>
+                <div className="stat-value">
+                  {stats.activeUsers >= 1000 
+                    ? `${(stats.activeUsers / 1000).toFixed(1)}K+` 
+                    : stats.activeUsers > 0 
+                      ? `${stats.activeUsers}+` 
+                      : '100+'}
+                </div>
                 <div className="stat-label">Mutlu Kullanıcı</div>
               </div>
               <div className="stat-item">
-                <div className="stat-value">500K+</div>
+                <div className="stat-value">
+                  {stats.photosEdited >= 1000000 
+                    ? `${(stats.photosEdited / 1000000).toFixed(1)}M+` 
+                    : stats.photosEdited >= 1000 
+                      ? `${(stats.photosEdited / 1000).toFixed(0)}K+` 
+                      : stats.photosEdited > 0 
+                        ? `${stats.photosEdited}+` 
+                        : '1K+'}
+                </div>
                 <div className="stat-label">Düzenlenen Fotoğraf</div>
               </div>
               <div className="stat-item">
-                <div className="stat-value">50+</div>
+                <div className="stat-value">{stats.countries}+</div>
                 <div className="stat-label">Ülke</div>
               </div>
             </div>

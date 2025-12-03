@@ -1,0 +1,49 @@
+.text-element {
+  position: absolute;
+  min-width: 50px;
+  white-space: nowrap;
+  transition: outline 0.2s, background-color 0.2s;
+}
+
+.text-element:hover {
+  outline: 2px dashed rgba(99, 102, 241, 0.5) !important;
+}
+
+.text-element-selected {
+  outline: 2px dashed #6366F1 !important;
+  outline-offset: 4px;
+}
+
+.text-delete-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #EF4444;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.2s;
+  z-index: 1000;
+}
+
+.text-delete-btn:hover {
+  background: #DC2626;
+  transform: scale(1.1);
+}
+
+.text-element[contenteditable="true"] {
+  cursor: text;
+}
+
+.text-element[contenteditable="true"]:focus {
+  outline: none !important;
+}
+

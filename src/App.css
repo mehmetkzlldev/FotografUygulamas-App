@@ -1,0 +1,19 @@
+/* ========================================
+   MAIN APP LAYOUT - CLEAN & FULL WIDTH
+   Premium User Experience
+   ======================================== */
+
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  background: #0a0a0f;
+}
+
+/* Main Content Area - Full Width */
+.app-main-content {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}

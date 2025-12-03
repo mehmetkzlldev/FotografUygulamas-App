@@ -28,23 +28,23 @@ const STORAGE_KEYS = {
  */
 function getLocalStorageStats(): AppStatistics {
   try {
-    // localStorage'dan oku, yoksa başlangıç değerlerini kullan
-    const photosEdited = parseInt(localStorage.getItem(STORAGE_KEYS.PHOTOS_EDITED) || '1250', 10);
+    // localStorage'dan oku, yoksa 0'dan başla
+    const photosEdited = parseInt(localStorage.getItem(STORAGE_KEYS.PHOTOS_EDITED) || '0', 10);
     const filtersCount = parseInt(localStorage.getItem(STORAGE_KEYS.FILTERS_COUNT) || '53', 10);
-    const activeUsers = parseInt(localStorage.getItem(STORAGE_KEYS.ACTIVE_USERS) || '150', 10);
+    const activeUsers = parseInt(localStorage.getItem(STORAGE_KEYS.ACTIVE_USERS) || '0', 10);
 
     return {
-      photosEdited: Math.max(photosEdited, 1250), // Minimum değer
+      photosEdited,
       filtersCount,
-      activeUsers: Math.max(activeUsers, 150), // Minimum değer
+      activeUsers,
       lastUpdated: new Date(),
     };
   } catch (error) {
     // localStorage erişilemezse varsayılan değerler
     return {
-      photosEdited: 1250,
+      photosEdited: 0,
       filtersCount: 53,
-      activeUsers: 150,
+      activeUsers: 0,
       lastUpdated: new Date(),
     };
   }
